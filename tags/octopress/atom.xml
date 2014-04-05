@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[DevinHe Blog]]></title>
-  <link href="http://hbfBlog.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Tag: octopress | DevinHe Blog]]></title>
+  <link href="http://hbfBlog.github.io/tags/octopress/atom.xml" rel="self"/>
   <link href="http://hbfBlog.github.io/"/>
   <updated>2014-04-05T19:58:11+08:00</updated>
   <id>http://hbfBlog.github.io/</id>
@@ -94,7 +94,7 @@ Creating new page: source/about/index.markdown
 <p>  添加关于链接：</p>
 
 <pre><code>在source\_includes\custom\navigation.html中添加以下内容:
-&lt;li&gt;&lt;a href="http://hbfBlog.github.io/about"&gt;About&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="/about"&gt;About&lt;/a&gt;&lt;/li&gt;
 </code></pre>
 
 <h4>第六步：查看变更和预览:</h4>
