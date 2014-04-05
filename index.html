@@ -9,8 +9,8 @@
   <meta name="author" content="DevinHe">
 
   
-  <meta name="description" content="第一步：安装Octopress的环境： 1.检查Ruby版本(>=1.9.3): ruby -v =&gt;ruby 2.0.0p247 2.克隆一个Octopress仓库到本地： git clone https://github.com/BaifanHe/octopress.git &hellip;">
-  
+  <meta name="description" content="何白帆的个人博客">
+  <meta name="keywords" content="Ruby,Rails,Web">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -38,7 +38,7 @@
   <header role="banner"><hgroup>
   <h1><a href="/">DevinHe Blog</a></h1>
   
-    <h2>花不可以无蝶，山不可以无泉，人不可以无癖。</h2>
+    <h2>开始积累Ruby学习历程</h2>
   
 </hgroup>
 
@@ -95,105 +95,14 @@
   </header>
 
 
-  <div class="entry-content"><h2>第一步：安装Octopress的环境：</h2>
+  <div class="entry-content"><p>记录自己操作Octopress建博客的过程以及碰到的问题。</p>
 
-<p>  1.检查Ruby版本(>=1.9.3):</p>
-
-<pre><code>ruby -v =&gt;ruby 2.0.0p247  
-</code></pre>
-
-<p>  2.克隆一个Octopress仓库到本地：</p>
-
-<pre><code>git clone https://github.com/BaifanHe/octopress.git octopress 
-cd octopress 
-</code></pre>
-
-<p>  3.安装依赖项</p>
-
-<pre><code>gem install bundler 
-bundle install 
-rake install 
-</code></pre>
-
-<h2>第二步：部署到Github Pages：</h2>
-
-<p>  1.在Github上创建一个<code>hbfBlog</code>小组。<br/>
-  2.在该小组中创建一个仓库（命名与组名一致）：<code>hbfBlog.github.io</code><br/>
-  3.运行命令<code>rake setup_github_pages</code>:</p>
-
-<pre><code>由于已经安装有最新版的bundler，用该命令无法直接使用Octopress框架依赖的低版本，使用如下格式：
-`bundle exec rake setup_github_pages`  
-</code></pre>
-
-<p>  4.命令提示请输入Github仓库地址的时候，输入：</p>
-
-<pre><code>https://github.com/hbfBlog/hbfBlog.github.io.git 
-</code></pre>
-
-<p>  5.生成博客页面框架：<code>rake generate</code>生成博客页面存放在<code>public</code>目录下。 <br/>
-  6.部署博客页面框架：<code>rake deploy</code>将<code>public</code>目录中的内容存放入<code>_deploy</code>目录中。</p>
-
-<h2>第三步：同步到Github:</h2>
-
-<pre><code>git add .  
-git commit -am "create myself blog"   
-git push origin source  
-</code></pre>
-
-<h2>第四步：新建博客:</h2>
-
-<pre><code>rake new_post["how to using octoprocess"]  
-=&gt; zsh: no matches found: new_post[how to using octopress]  
-</code></pre>
-
-<p>  由于使用的是<code>zsh shell</code>，因此运行命令的时候需要做反义字符处理:</p>
-
-<pre><code>rake new_post\["how to using octoprocess"\] 
-=&gt;Creating new page: source/_post/2014-04-05-how-to-using-octopress.markdown  
-</code></pre>
-
-<p>  编辑markdown文件，创作文章。</p>
-
-<h2>第五步：新建关于页面:</h2>
-
-<pre><code>bundle exec rake new_page\["about"\]                
-mkdir -p source/about  
-Creating new page: source/about/index.markdown  
-</code></pre>
-
-<p>  添加关于链接：</p>
-
-<pre><code>在source\_includes\custom\navigation.html中添加以下内容:
-&lt;li&gt;&lt;a href="/about"&gt;About&lt;/a&gt;&lt;/li&gt;
-</code></pre>
-
-<h2>第六步：查看变更和预览:</h2>
-
-<pre><code>bundle exec rake generate  
-bundle exec rake watch  
-bundle exec rake preview  
-</code></pre>
-
-<p>  使用浏览器查看：<code>http://localhost:4000</code>，即可进行预览。</p>
-
-<h2>第七步: 实施博客:</h2>
-
-<pre><code>bundle exec rake deploy
-</code></pre>
-
-<h2>第八步: 提交到Github:</h2>
-
-<pre><code>git add .  
-git status  
-git commit -am "create a new post and about page"  
-git push origin source  
-</code></pre>
-
-<h2>第九步：访问</h2>
-
-<p>  <a href="http://hbfblog.github.io">http://hbfblog.github.io</a></p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2014/04/05/how-to-using-octopress/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -216,6 +125,35 @@ git push origin source
       </li>
     
   </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/BaifanHe">@BaifanHe</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'BaifanHe',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
 

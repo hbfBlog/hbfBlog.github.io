@@ -41,7 +41,7 @@ Twitter：DDYdevin
   <header role="banner"><hgroup>
   <h1><a href="/">DevinHe Blog</a></h1>
   
-    <h2>花不可以无蝶，山不可以无泉，人不可以无癖。</h2>
+    <h2>开始积累Ruby学习历程</h2>
   
 </hgroup>
 
@@ -148,6 +148,35 @@ Time.now    #重新选定方向--Ruby，开始自己的专研之路，记录点�
       </li>
     
   </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/BaifanHe">@BaifanHe</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'BaifanHe',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
 

@@ -4,7 +4,7 @@
   <title><![CDATA[DevinHe Blog]]></title>
   <link href="http://hbfBlog.github.io/atom.xml" rel="self"/>
   <link href="http://hbfBlog.github.io/"/>
-  <updated>2014-04-05T14:53:47+08:00</updated>
+  <updated>2014-04-05T19:38:29+08:00</updated>
   <id>http://hbfBlog.github.io/</id>
   <author>
     <name><![CDATA[DevinHe]]></name>
@@ -18,7 +18,14 @@
     <link href="http://hbfBlog.github.io/blog/2014/04/05/how-to-using-octopress/"/>
     <updated>2014-04-05T12:12:02+08:00</updated>
     <id>http://hbfBlog.github.io/blog/2014/04/05/how-to-using-octopress</id>
-    <content type="html"><![CDATA[<h2>第一步：安装Octopress的环境：</h2>
+    <content type="html"><![CDATA[<p>记录自己操作Octopress建博客的过程以及碰到的问题。</p>
+
+<!--more-->
+
+
+<p></p>
+
+<h4>第一步：安装Octopress的环境：</h4>
 
 <p>  1.检查Ruby版本(>=1.9.3):</p>
 
@@ -35,10 +42,10 @@ cd octopress
 
 <pre><code>gem install bundler 
 bundle install 
-rake install 
+rake install
 </code></pre>
 
-<h2>第二步：部署到Github Pages：</h2>
+<h4>第二步：部署到Github Pages：</h4>
 
 <p>  1.在Github上创建一个<code>hbfBlog</code>小组。<br/>
   2.在该小组中创建一个仓库（命名与组名一致）：<code>hbfBlog.github.io</code><br/>
@@ -56,14 +63,14 @@ rake install
 <p>  5.生成博客页面框架：<code>rake generate</code>生成博客页面存放在<code>public</code>目录下。 <br/>
   6.部署博客页面框架：<code>rake deploy</code>将<code>public</code>目录中的内容存放入<code>_deploy</code>目录中。</p>
 
-<h2>第三步：同步到Github:</h2>
+<h4>第三步：同步到Github:</h4>
 
 <pre><code>git add .  
 git commit -am "create myself blog"   
 git push origin source  
 </code></pre>
 
-<h2>第四步：新建博客:</h2>
+<h4>第四步：新建博客:</h4>
 
 <pre><code>rake new_post["how to using octoprocess"]  
 =&gt; zsh: no matches found: new_post[how to using octopress]  
@@ -77,7 +84,7 @@ git push origin source
 
 <p>  编辑markdown文件，创作文章。</p>
 
-<h2>第五步：新建关于页面:</h2>
+<h4>第五步：新建关于页面:</h4>
 
 <pre><code>bundle exec rake new_page\["about"\]                
 mkdir -p source/about  
@@ -90,7 +97,7 @@ Creating new page: source/about/index.markdown
 &lt;li&gt;&lt;a href="http://hbfBlog.github.io/about"&gt;About&lt;/a&gt;&lt;/li&gt;
 </code></pre>
 
-<h2>第六步：查看变更和预览:</h2>
+<h4>第六步：查看变更和预览:</h4>
 
 <pre><code>bundle exec rake generate  
 bundle exec rake watch  
@@ -99,12 +106,12 @@ bundle exec rake preview
 
 <p>  使用浏览器查看：<code>http://localhost:4000</code>，即可进行预览。</p>
 
-<h2>第七步: 实施博客:</h2>
+<h4>第七步: 实施博客:</h4>
 
 <pre><code>bundle exec rake deploy
 </code></pre>
 
-<h2>第八步: 提交到Github:</h2>
+<h4>第八步: 提交到Github:</h4>
 
 <pre><code>git add .  
 git status  
@@ -112,7 +119,7 @@ git commit -am "create a new post and about page"
 git push origin source  
 </code></pre>
 
-<h2>第九步：访问</h2>
+<h4>第九步：访问</h4>
 
 <p>  <a href="http://hbfblog.github.io">http://hbfblog.github.io</a></p>
 ]]></content>
