@@ -5,7 +5,7 @@ date: 2014-04-05 12:12:02 +0800
 comments: true
 categories: [octopress, rake(zsh)]
 ---
-##第一步：安装Octopress的环境 
+##第一步：安装Octopress的环境：  
   1.检查Ruby版本(>=1.9.3): 
     ruby -v =>ruby 2.0.0p247  
   2.克隆一个Octopress仓库到本地： 
@@ -15,7 +15,7 @@ categories: [octopress, rake(zsh)]
     gem install bundler 
     bundle install 
     rake install 
-##第二步：部署到Github Pages 
+##第二步：部署到Github Pages：  
   1.在Github上创建一个`hbfBlog`小组。  
   2.在该小组中创建一个仓库（命名与组名一致）：`hbfBlog.github.io`  
   3.运行命令`rake setup_github_pages`: 
@@ -44,13 +44,16 @@ categories: [octopress, rake(zsh)]
     在source\_includes\custom\navigation.html中添加以下内容:
     <li><a href="{{ root_url }}/about">About</a></li>
 ##第六步：查看变更和预览:  
-    bundle exec watch  
-    bundle exec preview  
+    bundle exec rake generate  
+    bundle exec rake watch  
+    bundle exec rake preview  
   使用浏览器查看：`http://localhost:4000`，即可进行预览。
-##第七步: 提交到Github:  
+##第七步: 实施博客:  
+    bundle exec rake deploy
+##第八步: 提交到Github:  
     git add .  
     git status  
     git commit -am "create a new post and about page"  
     git push origin source  
-##第八步：访问
+##第九步：访问
   http://hbfblog.github.io
