@@ -9,7 +9,7 @@
   <meta name="author" content="DevinHe">
 
   
-  <meta name="description" content="第一步：安装Octopress的环境 1.检查Ruby版本(>=1.9.3): ruby -v =&gt;ruby 2.0.0p247 2.克隆一个Octopress仓库到本地： git clone https://github.com/BaifanHe/octopress.git &hellip;">
+  <meta name="description" content="第一步：安装Octopress的环境： 1.检查Ruby版本(>=1.9.3): ruby -v =&gt;ruby 2.0.0p247 2.克隆一个Octopress仓库到本地： git clone https://github.com/BaifanHe/octopress.git &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -38,7 +38,7 @@
   <header role="banner"><hgroup>
   <h1><a href="/">DevinHe Blog</a></h1>
   
-    <h2>花不可以无蝶，山不可以无泉，人不可以无癖。</h2>
+    <h2>开始积累Ruby学习历程</h2>
   
 </hgroup>
 
@@ -92,7 +92,7 @@
   </header>
 
 
-<div class="entry-content"><h2>第一步：安装Octopress的环境</h2>
+<div class="entry-content"><h2>第一步：安装Octopress的环境：</h2>
 
 <p>  1.检查Ruby版本(>=1.9.3):</p>
 
@@ -112,7 +112,7 @@ bundle install
 rake install 
 </code></pre>
 
-<h2>第二步：部署到Github Pages</h2>
+<h2>第二步：部署到Github Pages：</h2>
 
 <p>  1.在Github上创建一个<code>hbfBlog</code>小组。<br/>
   2.在该小组中创建一个仓库（命名与组名一致）：<code>hbfBlog.github.io</code><br/>
@@ -166,13 +166,19 @@ Creating new page: source/about/index.markdown
 
 <h2>第六步：查看变更和预览:</h2>
 
-<pre><code>bundle exec watch  
-bundle exec preview  
+<pre><code>bundle exec rake generate  
+bundle exec rake watch  
+bundle exec rake preview  
 </code></pre>
 
 <p>  使用浏览器查看：<code>http://localhost:4000</code>，即可进行预览。</p>
 
-<h2>第七步: 提交到Github:</h2>
+<h2>第七步: 实施博客:</h2>
+
+<pre><code>bundle exec rake deploy
+</code></pre>
+
+<h2>第八步: 提交到Github:</h2>
 
 <pre><code>git add .  
 git status  
@@ -180,7 +186,7 @@ git commit -am "create a new post and about page"
 git push origin source  
 </code></pre>
 
-<h2>第八步：访问</h2>
+<h2>第九步：访问</h2>
 
 <p>  <a href="http://hbfblog.github.io">http://hbfblog.github.io</a></p>
 </div>
@@ -246,6 +252,35 @@ git push origin source
       </li>
     
   </ul>
+</section>
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating...</li>
+  </ul>
+  
+  <a href="https://github.com/BaifanHe">@BaifanHe</a> on GitHub
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'BaifanHe',
+            count: 0,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
 
 
