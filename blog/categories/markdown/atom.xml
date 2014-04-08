@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Markdown | DevinHe Blog]]></title>
+  <link href="http://hbfBlog.github.io/blog/categories/markdown/atom.xml" rel="self"/>
+  <link href="http://hbfBlog.github.io/"/>
+  <updated>2014-04-08T20:58:34+08:00</updated>
+  <id>http://hbfBlog.github.io/</id>
+  <author>
+    <name><![CDATA[DevinHe]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Markdown格式（入门级别）]]></title>
+    <link href="http://hbfBlog.github.io/blog/2014/04/08/how-to-set-the-octopress/"/>
+    <updated>2014-04-08T18:08:09+08:00</updated>
+    <id>http://hbfBlog.github.io/blog/2014/04/08/how-to-set-the-octopress</id>
+    <content type="html"><![CDATA[<p>简单介绍一些markdown的书写格式，为写博客做准备。</p>
+
+<!--more-->
+
+
+<ol>
+<li><strong><em>标题</em></strong><br/>
+ 加#，‘#’的个数n代表了hn。如5级标题：<br/>
+ #####五级标题
+ #####五级标题</li>
+<li><strong><em>断行</em></strong><br/>
+ 行尾加两个空格<br/>
+ 不加空格前：  第一行
+第二行<br/>
+ 加上空格之后： 第一行<br/>
+第二行</li>
+<li><strong><em>列表</em></strong><br/>
+ *列表 ,+是UL，数字是OL,在符号与内容之间须保持有空格存在。</li>
+<li><strong><em>链接</em></strong><br/>
+ 网址：<code>[百度](www.baidu.com)</code><br/>
+ 图片：<code>![img](url)</code></li>
+<li><strong><em>引用</em></strong><br/>
+ 单个引用(>hello) 或 嵌套引用(>>hello)</li>
+<li><strong><em>代码</em></strong><br/>
+ 单行：（`）使用该符号将代码括起。<br/>
+ 多行：(```)使用该符号将代码括起。</li>
+<li><strong><em>水平线</em></strong><br/>
+ 使用至少3个（-/*/_）符号表示</li>
+<li><strong><em>粗体和斜体</em></strong><br/>
+ 使用（*）或（_）号，一个表示斜体，两个表示粗体，3个表示粗斜体。</li>
+<li><strong><em>markdown在线编辑</em></strong><br/>
+ <a href="http://mahua.jser.me/">http://mahua.jser.me/</a></li>
+<li><p><strong><em>支持转义的字符</em></strong></p>
+
+<pre><code>\   反斜线  
+`   反引号  
+*   星号
+_   底线
+{}  花括号
+[]  方括号
+()  括弧
+#   井字号
++   加号
+-   减号
+.   英文句点
+!   惊叹号
+</code></pre></li>
+</ol>
+
+]]></content>
+  </entry>
+  
+</feed>
