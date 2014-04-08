@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Markdown | DevinHe Blog]]></title>
   <link href="http://hbfBlog.github.io/blog/categories/markdown/atom.xml" rel="self"/>
   <link href="http://hbfBlog.github.io/"/>
-  <updated>2014-04-08T21:24:58+08:00</updated>
+  <updated>2014-04-08T21:33:46+08:00</updated>
   <id>http://hbfBlog.github.io/</id>
   <author>
     <name><![CDATA[DevinHe]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Markdown格式（入门级别）]]></title>
-    <link href="http://hbfBlog.github.io/blog/2014/04/08/how-to-set-the-octopress/"/>
+    <link href="http://hbfBlog.github.io/blog/2014/04/08/markdown-learning/"/>
     <updated>2014-04-08T18:08:09+08:00</updated>
-    <id>http://hbfBlog.github.io/blog/2014/04/08/how-to-set-the-octopress</id>
+    <id>http://hbfBlog.github.io/blog/2014/04/08/markdown-learning</id>
     <content type="html"><![CDATA[<p>简单介绍一些markdown的书写格式，为写博客做准备。</p>
 
 <!--more-->
