@@ -11,7 +11,7 @@
   
   <meta name="description" content="Blog Archive 2014 Markdown格式（入门级别）
 Apr 08 2014 posted in markdown 如何使用Octopress框架建博客
-Apr 05 2014 posted in octopress Recent Posts Markdown格式（入门级别） &hellip;">
+Apr 05 2014 posted in octopress Categories markdown (1) &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -40,7 +40,7 @@ Apr 05 2014 posted in octopress Recent Posts Markdown格式（入门级别） &h
   <header role="banner"><hgroup>
   <h1><a href="/">DevinHe Blog</a></h1>
   
-    <h2>开始积累Ruby学习历程</h2>
+    <h2>花不可以无蝶，山不可以无泉，人不可以无癖。</h2>
   
 </hgroup>
 
@@ -116,7 +116,14 @@ Apr 05 2014 posted in octopress Recent Posts Markdown格式（入门级别） &h
 
 <aside class="sidebar">
   
-    <section>
+    <section> 
+  <h1>Categories</h1> 
+  <ul id="categories"> 
+    <li class='category'><a href='/blog/categories/markdown/'>markdown (1)</a></li>
+<li class='category'><a href='/blog/categories/octopress/'>octopress (1)</a></li>
+ 
+  </ul> 
+</section><section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
@@ -131,39 +138,15 @@ Apr 05 2014 posted in octopress Recent Posts Markdown格式（入门级别） &h
   </ul>
 </section>
 
+
+
 <section>
-  <h1>GitHub Repos</h1>
-  <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
+  <h1>Tags</h1>
+  <ul class="tag-cloud">
+    <a style="font-size: NaN%" href="/tags/octopress/">octopress</a>
+
   </ul>
-  
-  <a href="https://github.com/BaifanHe">@BaifanHe</a> on GitHub
-  
-  <script type="text/javascript">
-    $(document).ready(function(){
-        if (!window.jXHR){
-            var jxhr = document.createElement('script');
-            jxhr.type = 'text/javascript';
-            jxhr.src = '/javascripts/libs/jXHR.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(jxhr, s);
-        }
-
-        github.showRepos({
-            user: 'BaifanHe',
-            count: 0,
-            skip_forks: true,
-            target: '#gh_repos'
-        });
-    });
-  </script>
-  <script src="/javascripts/github.js" type="text/javascript"> </script>
 </section>
-
-
-
-
-
   
 </aside>
 
@@ -177,6 +160,19 @@ Apr 05 2014 posted in octopress Recent Posts Markdown格式（入门级别） &h
 
 </footer>
   
+
+<script type="text/javascript">
+      var disqus_shortname = 'devinhe';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 
