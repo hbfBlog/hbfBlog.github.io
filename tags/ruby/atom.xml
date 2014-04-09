@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: ruby | DevinHe Blog]]></title>
+  <link href="http://hbfBlog.github.io/tags/ruby/atom.xml" rel="self"/>
+  <link href="http://hbfBlog.github.io/"/>
+  <updated>2014-04-09T08:36:14+08:00</updated>
+  <id>http://hbfBlog.github.io/</id>
+  <author>
+    <name><![CDATA[DevinHe]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby知识积累]]></title>
+    <link href="http://hbfBlog.github.io/blog/2014/04/09/design-method-in-ruby/"/>
+    <updated>2014-04-09T08:32:02+08:00</updated>
+    <id>http://hbfBlog.github.io/blog/2014/04/09/design-method-in-ruby</id>
+    <content type="html"><![CDATA[<p>积累自己在学习Ruby过程中遇到的疑惑。<!--more--></p>
+
+<h4><strong><em>Ruby的优缺点？</em></strong></h4>
+
+<ul>
+<li><p>优点：</p>
+
+<ul>
+<li>解释型执行，方便快捷</li>
+<li>语法简单、优雅</li>
+<li>完全面向对象</li>
+<li>内置正则式引擎，适合文本处理</li>
+<li>自动垃圾收集机制</li>
+<li>跨平台和高度可移植性</li>
+<li>有优雅、完善的异常处理机制</li>
+<li>拥有很多高级特性:例如操作符重载、Mix-ins、特殊方法等等</li>
+</ul>
+</li>
+<li><p>缺点：</p>
+
+<ul>
+<li>解释型语言，所以速度较慢</li>
+<li>静态检查比较少</li>
+</ul>
+</li>
+</ul>
+
+
+<h4><strong><em>require, load,autoload,include的区别是什么?</em></strong></h4>
+
+<ul>
+<li>require.load用于文件，如*.rb；include用于包含一个文件中的模块。</li>
+<li>require一般情况下用于加载库文件，而load则用于加载配置文件。</li>
+<li>require只加载一次，load可加载多次</li>
+<li>autoload(name,file_name)在模块名称name第一次被访问的时候，加载file_name。</li>
+</ul>
+
+
+<h4><strong><em>&ldquo;中国 2014&rdquo;.size和"中国 2014".bytesize有什么区别？</em></strong></h4>
+
+<ul>
+<li>输出结果分别为：size=7，bytesize=9；</li>
+<li>String#size,String#length返回的是字符个数；</li>
+<li>String#bytesize返回的字节个数。</li>
+</ul>
+
+
+<h4><strong><em>string 和 symbol有什么区别？</em></strong></h4>
+
+<ul>
+<li>string定义后可以改变,即使内容相同的string，其object_id也不同；</li>
+<li>symbol定义后不可以进行改变，同一个符号的object_id是唯一的。
+
+<blockquote><p>镐头书中这样描述：
+symbol are simply constant names that you don&rsquo;t have to predeclare and that are guaranteed to be unique.There is no need to assign some kind of value to a symbol&mdash;Ruby takes care of that for you.</p></blockquote></li>
+</ul>
+
+
+<h4><strong><em>Ruyb中有哪些设计模式？</em></strong></h4>
+
+<ul>
+<li>Singleton(单件)模式</li>
+<li>以库的形式实现了此模式，使用singleton库的方法是先<code>require 'singleton'</code>然后在类中<code>include Singleton</code>。</li>
+<li>Proxy(代理)模式</li>
+<li>tempfile库的实现使用了此模式，使得该库在不用指定文件名的情况下就可以生成临时的工作文件。</li>
+<li>可以通过Ruby中delegate库来实现此模式，tempfile库也是使用此库来实现的。</li>
+<li>method_missing方法的使用，也是代理模式的机制的一个体现。</li>
+<li>Visitor(访问者)模式</li>
+<li>Ruby中使用此模式来实现使用块进行循环的抽象化。</li>
+<li>Prototype（原型）模型
+
+<blockquote><p>Prototype模式：明确一个实例作为要生成对象的种类模型，通过复制该实例来生成新的对象。</p></blockquote></li>
+<li>Ruby虽然是类模式的语言，也拥有支持原型模式编程的功能。</li>
+<li>复制对象的clone方法</li>
+<li>给个别对象增加方法的特异方法功能</li>
+<li>给个别对象增加一组功能的extend方法</li>
+<li>Template Method(模板方法)模式
+
+<blockquote><p>Template Method模式:在父类的一个方法中定义算法的框架，其中几个步骤的具体内容则留给子类来实现。</p></blockquote></li>
+<li>Ruby中最大限度的使用该模式的库为Enumerable模块和Comparable模块了。</li>
+<li>Observable(观察者)模式</li>
+<li>观察者模式是一种避免高度依赖性的手段。</li>
+<li>Ruby为实现此模式提供了observer的库。</li>
+<li>Strategy(策略)模式
+
+<blockquote><p>策略模式:定义算法的集合，将各算法封装，使得他们能够交换。利用Strategy模式，算法和利用这些算法的客户程序可以分别独立进行修改而不互相影响。</p></blockquote></li>
+<li>Ruby库中cgi/session库使用了此模式。</li>
+</ul>
+
+
+<h4><strong><em>给定一个时间点，希望得到其他时间点</em></strong></h4>
+
+<p>使用date库方法即可，如：
+<code>
+require 'date'
+(Date.new(1776, 7, 2)..Date.new(1776, 7, 4)).each { |x| puts x }
+</code></p>
+
+<h4><strong><em>求一个数是否为素数</em></strong></h4>
+
+<p>```
+def is_prime?
+  return false if self &lt;= 1
+  2.upto(Math.sqrt(self).to_i) do |x|</p>
+
+<pre><code>return false if self % x == 0
+</code></pre>
+
+<p>  end
+  true
+end
+```
+或者使用Prime类方法prime?(n)。</p>
+]]></content>
+  </entry>
+  
+</feed>
