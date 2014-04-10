@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Markdown格式（入门级别） - DevinHe Blog</title>
+  <title>Rails基础知识 - DevinHe Blog</title>
   <meta name="author" content="DevinHe">
 
   
-  <meta name="description" content="Markdown格式（入门级别）">
-  <meta name="keywords" content="markdown">
+  <meta name="description" content="积累Rails的小知识。 resources :posts创建了哪些路由？ 创建的路由可以通过rake routes来查看 posts GET /posts(.:format) posts#index POST /posts(.:format) posts#create new_post GET &hellip;">
+  <meta name="keywords" content="rails">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://hbfBlog.github.io/blog/2014/04/08/markdown-learning">
+  <link rel="canonical" href="http://hbfBlog.github.io/blog/2014/04/10/rails-basement">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="DevinHe Blog" type="application/atom+xml">
@@ -69,7 +69,7 @@
   
   <header>
     
-      <h1 class="entry-title">Markdown格式（入门级别）</h1>
+      <h1 class="entry-title">Rails基础知识</h1>
     
     
       <p class="meta">
@@ -85,7 +85,7 @@
   
 
 
-<time datetime="2014-04-08T18:08:09+08:00" pubdate data-updated="true">Apr 8<span>th</span>, 2014</time>
+<time datetime="2014-04-10T06:43:44+08:00" pubdate data-updated="true">Apr 10<span>th</span>, 2014</time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://hbfBlog.github.io">Comments</a>
@@ -95,54 +95,62 @@
   </header>
 
 
-<div class="entry-content"><p>简单介绍一些markdown的书写格式，为写博客做准备。</p>
+<div class="entry-content"><p>积累Rails的小知识。<!--more--></p>
 
-<!--more-->
+<h4><strong><em><code>resources :posts</code>创建了哪些路由？</em></strong></h4>
+
+<ul>
+<li>创建的路由可以通过<code>rake routes</code>来查看
+        posts GET    /posts(.:format)          posts#index
+              POST   /posts(.:format)          posts#create
+     new_post GET    /posts/new(.:format)      posts#new
+    edit_post GET    /posts/:id/edit(.:format) posts#edit
+         post GET    /posts/:id(.:format)      posts#show
+              PATCH  /posts/:id(.:format)      posts#update
+              PUT    /posts/:id(.:format)      posts#update
+              DELETE /posts/:id(.:format)      posts#destroy
+  <em>总结起来，基本上只有4个形式，/posts、/posts/new、/posts/:id、/posts/:id/edit，动词有五种get、post、put、patch、delete。</em></li>
+</ul>
 
 
-<ol>
-<li><strong><em>标题</em></strong><br/>
- 加#，‘#’的个数n代表了hn。如5级标题：<br/>
- #####五级标题
- #####五级标题</li>
-<li><strong><em>断行</em></strong><br/>
- 行尾加两个空格<br/>
- 不加空格前：  第一行
-第二行<br/>
- 加上空格之后： 第一行<br/>
-第二行</li>
-<li><strong><em>列表</em></strong><br/>
- *列表 ,+是UL，数字是OL,在符号与内容之间须保持有空格存在。</li>
-<li><strong><em>链接</em></strong><br/>
- 网址：<code>[百度](www.baidu.com)</code><br/>
- 图片：<code>![img](url)</code></li>
-<li><strong><em>引用</em></strong><br/>
- 单个引用(>hello) 或 嵌套引用(>>hello)</li>
-<li><strong><em>代码</em></strong><br/>
- 单行：（`）使用该符号将代码括起。<br/>
- 多行：(&#8220;`)使用该符号将代码括起。</li>
-<li><strong><em>水平线</em></strong><br/>
- 使用至少3个（-/*/_）符号表示</li>
-<li><strong><em>粗体和斜体</em></strong><br/>
- 使用（*）或（_）号，一个表示斜体，两个表示粗体，3个表示粗斜体。</li>
-<li><strong><em>markdown在线编辑</em></strong><br/>
- <a href="http://mahua.jser.me/">http://mahua.jser.me/</a></li>
-<li><p><strong><em>支持转义的字符</em></strong></p>
+<h4><strong><em>什么是RESTful？</em></strong></h4>
 
-<pre><code>\   反斜线  
-`   反引号  
-*   星号
-_   底线
-{}  花括号
-[]  方括号
-()  括弧
-#   井字号
-+   加号
--   减号
-.   英文句点
-!   惊叹号
-</code></pre></li>
-</ol>
+<ul>
+<li>REST=&ldquo;Representation State Transfer&rdquo;,表现层状态转化</li>
+<li>每一个URI代表一种资源</li>
+<li>客户端和服务器之间，传递这种资源的某种表现层。</li>
+<li>客户端通过四个HTTP动词，对服务器端资源进行操作，实现&#8221;表现层状态转化&#8221;<br/>
+简单的可以认为，HTTP是无状态的，REST风格使得通过URL可以传递状态，去除了额外的参数。<br/>
+Tips：</li>
+<li>URI中不要包含动词：/posts/show/1，应该改为/posts/1</li>
+<li>URI中不要加版本号：/app/1.0/foo，可以在HTTP请求头信息的Accept字段中进行区分Accept: vnd.example-com.foo+json; version=1.0</li>
+</ul>
+
+
+<h4><strong><em>User.find(10) 和 User.find_by_id(10)的区别</em></strong></h4>
+
+<ul>
+<li><code>User.find(10)</code>相当于： <code>select users.* from "users" where "user"."id" = ? limit 1 [["id", 1]]</code>;失败后返回ActiveRecord::RecordNotFound异常。</li>
+<li><code>User.find_by_id(10)</code>相当于: <code>select users.* form "users" where "user"."id" = 1 limit 1</code>;失败返回nil。</li>
+</ul>
+
+
+<h4><strong><em>在控制台中执行<code>user = User.first; user.name = 'wangwei'</code>后, 如何查看数据库中的user信息?</em></strong></h4>
+
+<ul>
+<li>使用user.reload,对对象进行重载。</li>
+</ul>
+
+
+<h4><strong><em>rake的作用</em></strong></h4>
+
+<ul>
+<li><code>rake routes</code>： 列出当前应用的所有定义的路由。</li>
+<li><code>rake test</code>： 运行测试用例。</li>
+<li><code>rake assets：precompile</code>: 对静态资源进行预编译。</li>
+<li><code>rake stats</code>：查看应用中代码统计的数据。</li>
+<li><code>rake secret</code>：生成伪随机key。</li>
+</ul>
 
 </div>
 
@@ -166,12 +174,12 @@ _   底线
   
 
 
-<time datetime="2014-04-08T18:08:09+08:00" pubdate data-updated="true">Apr 8<span>th</span>, 2014</time>
+<time datetime="2014-04-10T06:43:44+08:00" pubdate data-updated="true">Apr 10<span>th</span>, 2014</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/markdown/'>markdown</a>
+    <a class='category' href='/blog/categories/rails/'>rails</a>
   
 </span>
 
@@ -192,7 +200,7 @@ _   底线
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://hbfBlog.github.io/blog/2014/04/08/markdown-learning/" data-via="DDYdevin" data-counturl="http://hbfBlog.github.io/blog/2014/04/08/markdown-learning/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://hbfBlog.github.io/blog/2014/04/10/rails-basement/" data-via="DDYdevin" data-counturl="http://hbfBlog.github.io/blog/2014/04/10/rails-basement/" >Tweet</a>
   
   
   
@@ -201,10 +209,8 @@ _   底线
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2014/04/05/how-to-using-octopress/" title="Previous Post: 如何使用Octopress框架建博客">&laquo; 如何使用Octopress框架建博客</a>
+        <a class="basic-alignment left" href="/blog/2014/04/09/design-method-in-ruby/" title="Previous Post: Ruby知识积累">&laquo; Ruby知识积累</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2014/04/08/how-to-set-yourself-octopress/" title="Next Post: 如何配置Octopress">如何配置Octopress &raquo;</a>
       
     </p>
   </footer>
@@ -288,8 +294,8 @@ _   底线
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://hbfBlog.github.io/blog/2014/04/08/markdown-learning/';
-        var disqus_url = 'http://hbfBlog.github.io/blog/2014/04/08/markdown-learning/';
+        var disqus_identifier = 'http://hbfBlog.github.io/blog/2014/04/10/rails-basement/';
+        var disqus_url = 'http://hbfBlog.github.io/blog/2014/04/10/rails-basement/';
         var disqus_script = 'embed.js';
       
     (function () {

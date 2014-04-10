@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: rails | DevinHe Blog]]></title>
+  <link href="http://hbfBlog.github.io/tags/rails/atom.xml" rel="self"/>
+  <link href="http://hbfBlog.github.io/"/>
+  <updated>2014-04-10T08:06:28+08:00</updated>
+  <id>http://hbfBlog.github.io/</id>
+  <author>
+    <name><![CDATA[DevinHe]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Rails基础知识]]></title>
+    <link href="http://hbfBlog.github.io/blog/2014/04/10/rails-basement/"/>
+    <updated>2014-04-10T06:43:44+08:00</updated>
+    <id>http://hbfBlog.github.io/blog/2014/04/10/rails-basement</id>
+    <content type="html"><![CDATA[<p>积累Rails的小知识。<!--more--></p>
+
+<h4><strong><em><code>resources :posts</code>创建了哪些路由？</em></strong></h4>
+
+<ul>
+<li>创建的路由可以通过<code>rake routes</code>来查看
+        posts GET    /posts(.:format)          posts#index
+              POST   /posts(.:format)          posts#create
+     new_post GET    /posts/new(.:format)      posts#new
+    edit_post GET    /posts/:id/edit(.:format) posts#edit
+         post GET    /posts/:id(.:format)      posts#show
+              PATCH  /posts/:id(.:format)      posts#update
+              PUT    /posts/:id(.:format)      posts#update
+              DELETE /posts/:id(.:format)      posts#destroy
+  <em>总结起来，基本上只有4个形式，/posts、/posts/new、/posts/:id、/posts/:id/edit，动词有五种get、post、put、patch、delete。</em></li>
+</ul>
+
+
+<h4><strong><em>什么是RESTful？</em></strong></h4>
+
+<ul>
+<li>REST=&ldquo;Representation State Transfer&rdquo;,表现层状态转化</li>
+<li>每一个URI代表一种资源</li>
+<li>客户端和服务器之间，传递这种资源的某种表现层。</li>
+<li>客户端通过四个HTTP动词，对服务器端资源进行操作，实现"表现层状态转化"<br/>
+简单的可以认为，HTTP是无状态的，REST风格使得通过URL可以传递状态，去除了额外的参数。<br/>
+Tips：</li>
+<li>URI中不要包含动词：/posts/show/1，应该改为/posts/1</li>
+<li>URI中不要加版本号：/app/1.0/foo，可以在HTTP请求头信息的Accept字段中进行区分Accept: vnd.example-com.foo+json; version=1.0</li>
+</ul>
+
+
+<h4><strong><em>User.find(10) 和 User.find_by_id(10)的区别</em></strong></h4>
+
+<ul>
+<li><code>User.find(10)</code>相当于： <code>select users.* from "users" where "user"."id" = ? limit 1 [["id", 1]]</code>;失败后返回ActiveRecord::RecordNotFound异常。</li>
+<li><code>User.find_by_id(10)</code>相当于: <code>select users.* form "users" where "user"."id" = 1 limit 1</code>;失败返回nil。</li>
+</ul>
+
+
+<h4><strong><em>在控制台中执行<code>user = User.first; user.name = 'wangwei'</code>后, 如何查看数据库中的user信息?</em></strong></h4>
+
+<ul>
+<li>使用user.reload,对对象进行重载。</li>
+</ul>
+
+
+<h4><strong><em>rake的作用</em></strong></h4>
+
+<ul>
+<li><code>rake routes</code>： 列出当前应用的所有定义的路由。</li>
+<li><code>rake test</code>： 运行测试用例。</li>
+<li><code>rake assets：precompile</code>: 对静态资源进行预编译。</li>
+<li><code>rake stats</code>：查看应用中代码统计的数据。</li>
+<li><code>rake secret</code>：生成伪随机key。</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+</feed>
