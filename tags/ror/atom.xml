@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Tag: ROR | DevinHe Blog]]></title>
+  <link href="http://hbfBlog.github.io/tags/ror/atom.xml" rel="self"/>
+  <link href="http://hbfBlog.github.io/"/>
+  <updated>2014-04-14T07:28:47+08:00</updated>
+  <id>http://hbfBlog.github.io/</id>
+  <author>
+    <name><![CDATA[DevinHe]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[ROR教程知识积累]]></title>
+    <link href="http://hbfBlog.github.io/blog/2014/04/14/ruby-on-rails-tutorial-knowledges/"/>
+    <updated>2014-04-14T07:26:03+08:00</updated>
+    <id>http://hbfBlog.github.io/blog/2014/04/14/ruby-on-rails-tutorial-knowledges</id>
+    <content type="html"><![CDATA[<p>记录在ROR教程学习过程中，遇到的一些问题以及难理解的知识点。</p>
+
+<!--more-->
+
+
+<h4><strong><em>使用AJAX技术</em></strong></h4>
+
+<p>描述对<code>button_to</code>添加AJAX的基本步骤。<br/>
+1. 为button添加remote参数：</p>
+
+<pre><code>`&lt;%= button_to 'Add to Cart', line_items_path(product_id: product), remote: true %&gt;`
+</code></pre>
+
+<ol>
+<li>在相应的action动作中添加脚本响应：<br/>
+<code>
+respond_to do |format|
+ format.js
+end
+</code>
+3.上一步的设置，Rails将会自动寻找一个action.js.erb文件，此步需要新建一个该文件（与相应的view文件在同一个目录中）。<br/>
+     例如创建文件app/views/line_items/create.js.erb<br/>
+     使用JQuery编写该js脚本文件：<code>$('#cart').html("&lt;%= escape_javascript render(@cart) %&gt;");</code></li>
+</ol>
+
+
+<h4><strong><em>使应用变得国际化</em></strong></h4>
+
+<ol>
+<li>新建文件app/config/initializers/i18n.rb,设定语言种类以及默认语言。<br/>
+<code>
+I18n.default_locale = :en
+LANGUAGES = [
+ ['English', 'en'],  
+ ['简体中文', 'zh-CN']
+]
+</code></li>
+<li>创建'/en/controller/action'形式路由<br/>
+<code>
+scope '(:locale)' do
+ root 'store#index', as: 'store', via: :all
+end
+</code></li>
+<li><p>在<code>application_controller.rb</code>中设置全局的语言选择<br/>
+```
+before_action :set_i18n_locale_from_params<br/>
+&hellip;
+protected
+def set_i18n_locale_from_params
+ if params[:locale]
+  if I18n.available_locales.map(&amp;:to_s).include?(params[:locale])
+     I18n.locale = params[:locale]
+  else
+     flash.now[:notice] = &ldquo;#{params[:locale]} translation not available&rdquo;
+     logger.error flash.now[:notice]
+  end
+ end</p>
+
+<p> def default_url_options
+   { locale: I18n.locale }
+ end
+end
+```</p></li>
+<li>设置<code>app/views/layouts/application.html.erb</code><br/>
+<code>&lt;li&gt;&lt;a href=""&gt;&lt;%= t('.news') %&gt;&lt;/a&gt;&lt;/li&gt;</code></li>
+<li>编写相应的国际化输出<br/>
+编辑app/config/locales/en.yml
+<code>
+en:  
+layouts:
+ application:
+    news: "News"
+</code>
+新建并编辑app/config/locales/zh-CN.yml
+<code>
+zh-CN:
+layouts:
+ application:
+    news: "新闻"
+</code></li>
+<li>添加语言选择器<br/>
+在application.html.erb中添加下拉按：<br/>
+```</li>
+</ol>
+
+
+<div id="banner">  
+      <%= form_tag store_path, class: 'locale' do %>  
+           <%= select_tag 'set_locale', options_for_select(LANGUAGES, I18n.locale.to_s),onchange: 'this.form.submit()' %>  
+           <%= submit_tag 'submit' %>  
+           <%= javascript_tag "$('.locale input').hide()" %>  
+      <% end %>  
+</div>
+
+
+<p>
+<code>
+在控制器中处理参数:  
+</code>
+def index</p>
+
+<pre><code>  if params[:set_locale]  
+    redirect_to store_url(locale: params[:set_locale])  
+  else  
+    @products = Product.order(:title)  
+  end  
+</code></pre>
+
+<p>end<br/>
+```</p>
+]]></content>
+  </entry>
+  
+</feed>

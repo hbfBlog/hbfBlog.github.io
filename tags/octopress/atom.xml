@@ -4,7 +4,7 @@
   <title><![CDATA[Tag: octopress | DevinHe Blog]]></title>
   <link href="http://hbfBlog.github.io/tags/octopress/atom.xml" rel="self"/>
   <link href="http://hbfBlog.github.io/"/>
-  <updated>2014-04-10T08:06:28+08:00</updated>
+  <updated>2014-04-14T07:28:47+08:00</updated>
   <id>http://hbfBlog.github.io/</id>
   <author>
     <name><![CDATA[DevinHe]]></name>
@@ -104,10 +104,15 @@ module Jekyll
 &lt;section&gt;
 &lt;h1&gt;Categories&lt;/h1&gt;
 &lt;ul id="categories"&gt;
- <li class='category'><a href='/blog/categories/markdown/'>markdown (1)</a></li>
+ <li class='category'><a href='/blog/categories/agile/'>Agile (1)</a></li>
+<li class='category'><a href='/blog/categories/development/'>Development (1)</a></li>
+<li class='category'><a href='/blog/categories/rails4/'>Rails4 (1)</a></li>
+<li class='category'><a href='/blog/categories/web/'>Web (1)</a></li>
+<li class='category'><a href='/blog/categories/markdown/'>markdown (1)</a></li>
 <li class='category'><a href='/blog/categories/octopress/'>octopress (2)</a></li>
 <li class='category'><a href='/blog/categories/rails/'>rails (1)</a></li>
 <li class='category'><a href='/blog/categories/ruby/'>ruby (1)</a></li>
+<li class='category'><a href='/blog/categories/with/'>with (1)</a></li>
 
 &lt;/ul&gt;
 &lt;/section&gt;

@@ -4,7 +4,7 @@
   <title><![CDATA[DevinHe Blog]]></title>
   <link href="http://hbfBlog.github.io/atom.xml" rel="self"/>
   <link href="http://hbfBlog.github.io/"/>
-  <updated>2014-04-10T08:06:28+08:00</updated>
+  <updated>2014-04-14T07:28:47+08:00</updated>
   <id>http://hbfBlog.github.io/</id>
   <author>
     <name><![CDATA[DevinHe]]></name>
@@ -12,6 +12,188 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ROR教程知识积累]]></title>
+    <link href="http://hbfBlog.github.io/blog/2014/04/14/ruby-on-rails-tutorial-knowledges/"/>
+    <updated>2014-04-14T07:26:03+08:00</updated>
+    <id>http://hbfBlog.github.io/blog/2014/04/14/ruby-on-rails-tutorial-knowledges</id>
+    <content type="html"><![CDATA[<p>记录在ROR教程学习过程中，遇到的一些问题以及难理解的知识点。</p>
+
+<!--more-->
+
+
+<h4><strong><em>使用AJAX技术</em></strong></h4>
+
+<p>描述对<code>button_to</code>添加AJAX的基本步骤。<br/>
+1. 为button添加remote参数：</p>
+
+<pre><code>`&lt;%= button_to 'Add to Cart', line_items_path(product_id: product), remote: true %&gt;`
+</code></pre>
+
+<ol>
+<li>在相应的action动作中添加脚本响应：</li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>  respond_to do |format|
+</span><span class='line'>    format.js
+</span><span class='line'>  end</span></code></pre></td></tr></table></div></figure>
+
+
+<p>3.上一步的设置，Rails将会自动寻找一个action.js.erb文件，此步需要新建一个该文件（与相应的view文件在同一个目录中）。</p>
+
+<pre><code>    例如创建文件app/views/line_items/create.js.erb  
+    使用JQuery编写该js脚本文件：`$('#cart').html("&lt;%= escape_javascript render(@cart) %&gt;");`  
+</code></pre>
+
+<h4><strong><em>使应用变得国际化</em></strong></h4>
+
+<ol>
+<li>新建文件app/config/initializers/i18n.rb,设定语言种类以及默认语言。</li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>I18n.default_locale = :en
+</span><span class='line'>LANGUAGES = [
+</span><span class='line'>    ['English', 'en'],  
+</span><span class='line'>    ['简体中文', 'zh-CN']
+</span><span class='line'>]</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>创建&#8217;/en/controller/action&#8217;形式路由</li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>scope '(:locale)' do
+</span><span class='line'>    root 'store#index', as: 'store', via: :all
+</span><span class='line'>end</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>在<code>application_controller.rb</code>中设置全局的语言选择</li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>before_action :set_i18n_locale_from_params  
+</span><span class='line'>...
+</span><span class='line'>protected
+</span><span class='line'>  def set_i18n_locale_from_params
+</span><span class='line'>    if params[:locale]
+</span><span class='line'>     if I18n.available_locales.map(&:to_s).include?(params[:locale])
+</span><span class='line'>        I18n.locale = params[:locale]
+</span><span class='line'>     else
+</span><span class='line'>        flash.now[:notice] = "#{params[:locale]} translation not available"
+</span><span class='line'>        logger.error flash.now[:notice]
+</span><span class='line'>     end
+</span><span class='line'>    end
+</span><span class='line'>
+</span><span class='line'>    def default_url_options
+</span><span class='line'>      { locale: I18n.locale }
+</span><span class='line'>    end
+</span><span class='line'>  end</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>设置<code>app/views/layouts/application.html.erb</code><br/>
+<code>&lt;li&gt;&lt;a href=""&gt;&lt;%= t('.news') %&gt;&lt;/a&gt;&lt;/li&gt;</code></li>
+<li>编写相应的国际化输出<br/>
+编辑app/config/locales/en.yml</li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>en:  
+</span><span class='line'>  layouts:
+</span><span class='line'>    application:
+</span><span class='line'>       news: "News"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>新建并编辑app/config/locales/zh-CN.yml</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>zh-CN:
+</span><span class='line'>  layouts:
+</span><span class='line'>    application:
+</span><span class='line'>       news: "新闻"</span></code></pre></td></tr></table></div></figure>
+
+
+<ol>
+<li>添加语言选择器<br/>
+在application.html.erb中添加下拉按：</li>
+</ol>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;div id="banner"&gt;  
+</span><span class='line'>      &lt;%= form_tag store_path, class: 'locale' do %&gt;  
+</span><span class='line'>           &lt;%= select_tag 'set_locale', options_for_select(LANGUAGES, I18n.locale.to_s),onchange: 'this.form.submit()' %&gt;  
+</span><span class='line'>           &lt;%= submit_tag 'submit' %&gt;  
+</span><span class='line'>           &lt;%= javascript_tag "$('.locale input').hide()" %&gt;  
+</span><span class='line'>      &lt;% end %&gt;  
+</span><span class='line'>&lt;/div&gt;  </span></code></pre></td></tr></table></div></figure>
+
+
+<p>在控制器中处理参数:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>def index  
+</span><span class='line'>      if params[:set_locale]  
+</span><span class='line'>        redirect_to store_url(locale: params[:set_locale])  
+</span><span class='line'>      else  
+</span><span class='line'>        @products = Product.order(:title)  
+</span><span class='line'>      end  
+</span><span class='line'>end  </span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rails基础知识]]></title>
@@ -322,10 +504,15 @@ keywords: Ruby,Rails,Web
 </pre></td><td class='code'><pre><code class=''><span class='line'>&lt;section&gt; 
 </span><span class='line'>  &lt;h1&gt;Categories&lt;/h1&gt; 
 </span><span class='line'>  &lt;ul id="categories"&gt; 
-</span><span class='line'>    <li class='category'><a href='http://hbfBlog.github.io/blog/categories/markdown/'>markdown (1)</a></li>
+</span><span class='line'>    <li class='category'><a href='http://hbfBlog.github.io/blog/categories/agile/'>Agile (1)</a></li>
+<li class='category'><a href='http://hbfBlog.github.io/blog/categories/development/'>Development (1)</a></li>
+<li class='category'><a href='http://hbfBlog.github.io/blog/categories/rails4/'>Rails4 (1)</a></li>
+<li class='category'><a href='http://hbfBlog.github.io/blog/categories/web/'>Web (1)</a></li>
+<li class='category'><a href='http://hbfBlog.github.io/blog/categories/markdown/'>markdown (1)</a></li>
 <li class='category'><a href='http://hbfBlog.github.io/blog/categories/octopress/'>octopress (2)</a></li>
 <li class='category'><a href='http://hbfBlog.github.io/blog/categories/rails/'>rails (1)</a></li>
 <li class='category'><a href='http://hbfBlog.github.io/blog/categories/ruby/'>ruby (1)</a></li>
+<li class='category'><a href='http://hbfBlog.github.io/blog/categories/with/'>with (1)</a></li>
  
 </span><span class='line'>  &lt;/ul&gt; 
 </span><span class='line'>&lt;/section&gt;</span></code></pre></td></tr></table></div></figure>
